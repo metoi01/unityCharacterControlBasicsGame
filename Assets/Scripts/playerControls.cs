@@ -1,67 +1,67 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class playerControls : MonoBehaviour
 {
-    private CharacterController controller;
-    private Vector3 direction;
-    public float forwardSpeed;
-    private int desiredLine=1;
-    public float laneDistance=4;
-    public float jumpForce;
-    public float gravity=-20;
+    public int forwardSpeed;
+    public int lineDistance = 5;
+    public GameObject player;
+    public int gravity=-10;
+    public int jumpLength=20;
+    private int _currentLine = 1;
+    private UnityEngine.Vector3 _targetPosition;
+    private CharacterController _controller;
     void Start()
     {
-        controller= GetComponent<CharacterController>();
+        _controller = player.GetComponent<CharacterController>();
+        _targetPosition = player.transform.position;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        direction.z=forwardSpeed;
+    _targetPosition += UnityEngine.Vector3.forward * forwardSpeed * Time.fixedDeltaTime;
+    if(Input.GetKeyDown(KeyCode.LeftArrow))
+    {
+        _currentLine--;
+        if(_currentLine<0)
+        {
+            _currentLine=0;
+        }
+        else
+        {
+            Debug.Log(_currentLine);
+            _targetPosition += UnityEngine.Vector3.left * lineDistance ;
+        }
+    }
+    else if(Input.GetKeyDown(KeyCode.RightArrow))
+    {
+        _currentLine++;
+        if(_currentLine>2)
+        {
+            _currentLine=2;
+        }
+        else
+        {
+            Debug.Log(_currentLine);
+            _targetPosition += UnityEngine.Vector3.right * lineDistance;
+        }
+    }
+    if(Input.GetKeyDown(KeyCode.UpArrow))
+    {
+        Jump();
+    }
+    player.transform.position = UnityEngine.Vector3.Lerp(player.transform.position, _targetPosition, Time.fixedDeltaTime);
+    }
 
-        if(controller.isGrounded){
-            
-            if(Input.GetKeyDown(KeyCode.UpArrow)){
-            Jump();
-        }
-        }
-
-        else{
-            direction.y+= gravity * Time.deltaTime;
-        }
+    private void FixedUpdate()
+    {
         
-        if(Input.GetKeyDown(KeyCode.RightArrow)){
-            desiredLine++;
-            if(desiredLine==3){
-                desiredLine=2;
-            }
-        }
-
-        if(Input.GetKeyDown(KeyCode.LeftArrow)){
-            desiredLine--;
-            if(desiredLine==-1){
-                desiredLine=0;
-            }
-        }
-
-        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
-
-        if(desiredLine==0){
-            targetPosition+=Vector3.left*laneDistance;
-        }
-        else if(desiredLine==2){
-            targetPosition+= Vector3.right* laneDistance;
-        }
-        transform.position=targetPosition;
     }
-
-    private void FixedUpdate(){
-        controller.Move(direction*Time.fixedDeltaTime);
-    }
-
-    private void Jump(){
-        direction.y= jumpForce;
+    
+    private void Jump()
+    {
+        _targetPosition+= UnityEngine.Vector3.up * jumpLength * Time.fixedDeltaTime;
     }
 }
