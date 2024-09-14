@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class tileManagerObjectPooling : MonoBehaviour
+public class TileManagerObjectPooling : MonoBehaviour
 {
     public GameObject[] tiles;
     public float zSpawn = 0;
@@ -13,30 +13,28 @@ public class tileManagerObjectPooling : MonoBehaviour
     private GameObject _object;
     private int _counter = 0;
     private int _counterHelper;
+    private int _tilesToSpawn;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < tiles.Length * 2 + 2; i++)
+        _tilesToSpawn = tiles.Length * 2 + 2;
+        for (int i = 0; i < _tilesToSpawn; i++)
         {
-            spawnTile(Random.Range(0, tiles.Length));
+            SpawnTile(Random.Range(0, tiles.Length));
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        reArrangeTiles();
+        ReArrangeTiles();
     }
-    public void spawnTile(int tileIndex)
+    public void SpawnTile(int tileIndex)
     {
         _object = Instantiate(tiles[tileIndex], transform.forward * zSpawn, transform.rotation);
         _activeTiles.Add(_object);
         zSpawn += tileLength;
-        Debug.Log(zSpawn);
     }
-    public void reArrangeTiles()
+    public void ReArrangeTiles()
     {
         if (player.transform.position.z > _activeTiles[_counter].transform.position.z + tileLength)
         {

@@ -227,7 +227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 728133622}
   - component: {fileID: 728133621}
-  - component: {fileID: 728133620}
   - component: {fileID: 728133623}
   m_Layer: 0
   m_Name: Main Camera
@@ -236,14 +235,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &728133620
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728133619}
-  m_Enabled: 1
 --- !u!20 &728133621
 Camera:
   m_ObjectHideFlags: 0
@@ -335,9 +326,9 @@ GameObject:
   - component: {fileID: 1618090199}
   - component: {fileID: 1618090198}
   - component: {fileID: 1618090197}
-  - component: {fileID: 1618090201}
   - component: {fileID: 1618090202}
   - component: {fileID: 1618090203}
+  - component: {fileID: 1618090204}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -433,23 +424,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1618090201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618090196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6f487a6abbba429e8bc0239bf7515d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forwardSpeed: 10
-  maxSpeed: 100
-  sidewaysSpeed: 5
-  laneDistance: 4
-  player: {fileID: 1618090196}
 --- !u!54 &1618090202
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -486,6 +460,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1618090196}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f487a6abbba429e8bc0239bf7515d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1618090196}
+  forwardSpeed: 10
+  maxSpeed: 500
+  sidewaysSpeed: 4
+  laneDistance: 4
+--- !u!114 &1618090204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618090196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 690da819962f544daa77f7cd71645ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -500,9 +491,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1685102080}
   - component: {fileID: 1685102081}
-  - component: {fileID: 1685102082}
   m_Layer: 0
-  m_Name: tileManager
+  m_Name: TileManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -524,29 +514,6 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1685102081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685102079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7818cd0590b34bcd8249212972d39c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 3731467069688138825, guid: 1562d27f0a0c040039b03d63c7f9b47a, type: 3}
-  - {fileID: 6490986576766003910, guid: d1ed7f5f35ad7400bbc4d4187b2d8e98, type: 3}
-  - {fileID: 7388152339453576221, guid: 92d01e55f720741a88ba71279d9e9ca1, type: 3}
-  - {fileID: 4037425905954798666, guid: 0ac97348fa8e74625a3c7d66bac6b7e6, type: 3}
-  zSpawn: 0
-  tileLength: 49
-  player: {fileID: 1618090200}
-  _activeTiles: []
-  _object: {fileID: 0}
-  _counter: 0
---- !u!114 &1685102082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
