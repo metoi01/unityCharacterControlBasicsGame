@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject player;
+    public GameObject startingText;
     public float forwardSpeed = 2;
     public float maxSpeed;
     public float sidewaysSpeed = 4;
@@ -14,12 +12,20 @@ public class PlayerController : MonoBehaviour
     private const int MAX_LANES = 2;
     private const float MIN_X_POSITION = -4;
     private float _velocity = 10f;
+    private bool _isGameStarted = false;
 
     void Update()
     {
-        MoveForward();
-        MoveSideways();
-        IncreaseSpeed();
+        if (_isGameStarted)
+        {
+            MoveForward();
+            MoveSideways();
+            IncreaseSpeed();
+        }
+        else
+        {
+            StartGame();
+        }
     }
 
     private void MoveForward()
@@ -48,5 +54,27 @@ public class PlayerController : MonoBehaviour
         {
             forwardSpeed += 0.1f * Time.deltaTime;
         }
+    }
+    private void StartGame()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _isGameStarted = true;
+            startingText.SetActive(false);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Finish")
+        {
+            RestartGame();
+        }
+    }
+    private void RestartGame()
+    {
+        _currentLaneIndex = 1;
+        _isGameStarted = false;
+        player.transform.position = new Vector3(0, 1, 4);
+        startingText.SetActive(true);
     }
 }
