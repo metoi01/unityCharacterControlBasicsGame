@@ -1,21 +1,31 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public GameObject player;
     public GameObject startingText;
+    public Text coinsText;
     public float forwardSpeed = 2;
     public float maxSpeed;
     public float sidewaysSpeed = 4;
     public float laneDistance = 4;
+    public static int coinCount;
+    public static float playerZCoord;
     private int _currentLaneIndex = 1;
     private const int MAX_LANES = 2;
     private const float MIN_X_POSITION = -4;
     private float _velocity = 10f;
     private bool _isGameStarted = false;
-
+    private bool _restartGame = false;
+    void Start()
+    {
+        coinCount = 0;
+    }
     void Update()
     {
+        playerZCoord = player.transform.position.z;
+        coinsText.text = "Coins: " + coinCount;
         if (_isGameStarted)
         {
             MoveForward();
@@ -57,24 +67,32 @@ public class PlayerController : MonoBehaviour
     }
     private void StartGame()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !_restartGame)
         {
             _isGameStarted = true;
             startingText.SetActive(false);
+        }
+        if (Input.GetMouseButtonDown(0) && _restartGame)
+        {
+            _restartGame = false;
+            RestartGame();
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Finish")
         {
-            RestartGame();
+            startingText.SetActive(true);
+            _isGameStarted = false;
+            _restartGame = true;
         }
     }
     private void RestartGame()
     {
+        coinCount = 0;
         _currentLaneIndex = 1;
-        _isGameStarted = false;
+        _isGameStarted = true;
         player.transform.position = new Vector3(0, 1, 4);
-        startingText.SetActive(true);
+        startingText.SetActive(false);
     }
 }
