@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.5748165, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -217,6 +217,99 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &463669231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 463669235}
+  - component: {fileID: 463669234}
+  - component: {fileID: 463669233}
+  - component: {fileID: 463669232}
+  - component: {fileID: 463669236}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &463669232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463669231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb17a4da0bffcb243b07701eb75b33c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &463669233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463669231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0836e97eaafc945b28719e1e8a22b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingText: {fileID: 1187005098}
+  coinsText: {fileID: 1590670681}
+--- !u!114 &463669234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463669231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 212fe47a8f2d4974eb104a6217f38610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &463669235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463669231}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.02669, y: 0.16681987, z: 531.0769}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &463669236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463669231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d1c8c24e6894067a955f0e6d127c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiles:
+  - {fileID: 3731467069688138825, guid: 1562d27f0a0c040039b03d63c7f9b47a, type: 3}
+  - {fileID: 6490986576766003910, guid: d1ed7f5f35ad7400bbc4d4187b2d8e98, type: 3}
+  - {fileID: 7388152339453576221, guid: 92d01e55f720741a88ba71279d9e9ca1, type: 3}
+  - {fileID: 4037425905954798666, guid: 0ac97348fa8e74625a3c7d66bac6b7e6, type: 3}
+  zSpawn: 0
+  tileLength: 49
+  playerTransform: {fileID: 1618090200}
 --- !u!1 &728133619
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +523,7 @@ GameObject:
   - component: {fileID: 1187005101}
   - component: {fileID: 1187005100}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: StartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,7 +623,7 @@ GameObject:
   - component: {fileID: 1590670682}
   - component: {fileID: 1590670681}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: CoinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -611,6 +704,7 @@ GameObject:
   - component: {fileID: 1618090197}
   - component: {fileID: 1618090202}
   - component: {fileID: 1618090203}
+  - component: {fileID: 1618090204}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -746,64 +840,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1618090196}
-  startingText: {fileID: 1187005098}
-  coinsText: {fileID: 1590670681}
   forwardSpeed: 10
   maxSpeed: 500
   sidewaysSpeed: 4
   laneDistance: 4
---- !u!1 &1685102079
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1685102080}
-  - component: {fileID: 1685102081}
-  m_Layer: 0
-  m_Name: TileManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1685102080
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685102079}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1685102081
+--- !u!114 &1618090204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685102079}
+  m_GameObject: {fileID: 1618090196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9d1c8c24e6894067a955f0e6d127c88, type: 3}
+  m_Script: {fileID: 11500000, guid: 95d3d46e4e403f84f81c6be049d8db74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiles:
-  - {fileID: 3731467069688138825, guid: 1562d27f0a0c040039b03d63c7f9b47a, type: 3}
-  - {fileID: 6490986576766003910, guid: d1ed7f5f35ad7400bbc4d4187b2d8e98, type: 3}
-  - {fileID: 7388152339453576221, guid: 92d01e55f720741a88ba71279d9e9ca1, type: 3}
-  - {fileID: 4037425905954798666, guid: 0ac97348fa8e74625a3c7d66bac6b7e6, type: 3}
-  zSpawn: 0
-  tileLength: 49
-  playerTransform: {fileID: 1618090200}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -811,5 +863,5 @@ SceneRoots:
   - {fileID: 728133622}
   - {fileID: 917353}
   - {fileID: 1618090200}
-  - {fileID: 1685102080}
   - {fileID: 773977173}
+  - {fileID: 463669235}

@@ -1,58 +1,66 @@
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    private const float MIN_X_POSITION = -4;
+    private const int MAX_LANES = 2;
+    
     public GameObject player;
-    public GameObject startingText;
-    public Text coinsText;
-    public float forwardSpeed = 2;
+    
+    public float forwardSpeed = 10;
     public float maxSpeed;
     public float sidewaysSpeed = 4;
     public float laneDistance = 4;
-    public static int coinCount;
-    public static float playerZCoord;
+    
     private int _currentLaneIndex = 1;
-    private const int MAX_LANES = 2;
-    private const float MIN_X_POSITION = -4;
+
     private float _velocity = 10f;
-    private bool _isGameStarted = false;
-    private bool _restartGame = false;
-    void Start()
+    private void OnEnable()
     {
-        coinCount = 0;
+        InputManager.ArrowClicked += LaneChange;
+        GameLogic.OnGameStarted += Playing;
+        GameLogic.OnGameRestarted += Playing;
     }
+
+    private void OnDisable()
+    {
+        InputManager.ArrowClicked -= LaneChange;
+        GameLogic.OnGameStarted -= Playing;
+        GameLogic.OnGameRestarted -= Playing;
+    }
+
+    private void LaneChange(int direction)
+    {
+        if (direction == -1)
+        {
+            _currentLaneIndex--;
+        }
+
+        if (direction == 1)
+        {
+            _currentLaneIndex++;
+        }
+        _currentLaneIndex = Mathf.Clamp(_currentLaneIndex, 0, MAX_LANES);
+    }
+
     void Update()
     {
-        playerZCoord = player.transform.position.z;
-        coinsText.text = "Coins: " + coinCount;
-        if (_isGameStarted)
+        if (GameLogic._gameState == GameLogic.GameState.Playing)
         {
             MoveForward();
-            MoveSideways();
+            MoveSideWays();
             IncreaseSpeed();
-        }
-        else
-        {
-            StartGame();
         }
     }
 
     private void MoveForward()
     {
-        player.transform.position += Vector3.forward * forwardSpeed * Time.deltaTime;
+        player.transform.position += Vector3.forward * (forwardSpeed * Time.deltaTime);
     }
 
-    private void MoveSideways()
+    private void MoveSideWays()
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && _currentLaneIndex > 0)
-        {
-            _currentLaneIndex--;
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && _currentLaneIndex < MAX_LANES)
-        {
-            _currentLaneIndex++;
-        }
         float targetposition = _currentLaneIndex * laneDistance + MIN_X_POSITION;
         float xPosition = Mathf.SmoothDamp(player.transform.position.x, targetposition, ref _velocity, Time.deltaTime * sidewaysSpeed);
         player.transform.position = new Vector3(xPosition, player.transform.position.y, player.transform.position.z);
@@ -65,34 +73,9 @@ public class PlayerController : MonoBehaviour
             forwardSpeed += 0.1f * Time.deltaTime;
         }
     }
-    private void StartGame()
+    private void Playing()
     {
-        if (Input.GetMouseButtonDown(0) && !_restartGame)
-        {
-            _isGameStarted = true;
-            startingText.SetActive(false);
-        }
-        if (Input.GetMouseButtonDown(0) && _restartGame)
-        {
-            _restartGame = false;
-            RestartGame();
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Finish")
-        {
-            startingText.SetActive(true);
-            _isGameStarted = false;
-            _restartGame = true;
-        }
-    }
-    private void RestartGame()
-    {
-        coinCount = 0;
         _currentLaneIndex = 1;
-        _isGameStarted = true;
         player.transform.position = new Vector3(0, 1, 4);
-        startingText.SetActive(false);
     }
 }

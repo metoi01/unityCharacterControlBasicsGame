@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3308125421648280646}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,12 +28,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661214876492686121}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.71, z: -1.941}
-  m_LocalScale: {x: 0.75757575, y: 1, z: 0.035778176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.7920828, y: 3.4218538, z: 1.3679574}
+  m_LocalScale: {x: 1, y: 1, z: 0.19999997}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5684537425410653373}
+  m_Father: {fileID: 8865473705731225605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9048549238462076583
 MeshFilter:
@@ -118,7 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ad98fe2acb147f1a105cdb100d8ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: {fileID: 661214876492686121}
 --- !u!1 &2506242582006379796
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,7 +132,7 @@ GameObject:
   - component: {fileID: 3992842839079365543}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Finish
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,12 +145,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2506242582006379796}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.28, y: 0.7, z: -2.835}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.121683, y: 3.4118538, z: -3.6295035}
+  m_LocalScale: {x: 1.32, y: 1, z: 3.24}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5684537425410653373}
+  m_Father: {fileID: 8865473705731225605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7495219446140537950
 MeshFilter:
@@ -239,7 +238,7 @@ GameObject:
   - component: {fileID: 1589458201911251340}
   m_Layer: 0
   m_Name: Sphere (2)
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,11 +252,11 @@ Transform:
   m_GameObject: {fileID: 3202538520368915131}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.71, z: -1.598}
-  m_LocalScale: {x: 0.75757575, y: 1, z: 0.035778176}
+  m_LocalPosition: {x: -3.7920828, y: 3.4218538, z: 3.2853281}
+  m_LocalScale: {x: 1, y: 1, z: 0.19999997}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5684537425410653373}
+  m_Father: {fileID: 8865473705731225605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6793613019647389573
 MeshFilter:
@@ -342,7 +341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ad98fe2acb147f1a105cdb100d8ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: {fileID: 3202538520368915131}
 --- !u!1 &3731467069688138825
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,13 +374,7 @@ Transform:
   m_LocalScale: {x: 1.32, y: 1, z: 5.59}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3847386097477491589}
-  - {fileID: 8852396261953281808}
-  - {fileID: 9006442200676354725}
-  - {fileID: 5192736792520470801}
-  - {fileID: 2917657095950397721}
-  - {fileID: 5778973804223600647}
-  - {fileID: 3201092187588642253}
+  - {fileID: 8865473705731225605}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6310213330914892072
@@ -492,7 +484,7 @@ GameObject:
   - component: {fileID: 3313619760779558956}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Finish
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -505,12 +497,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5923390647299221758}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.72, z: 2.71}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.7920828, y: 3.4318538, z: 27.36705}
+  m_LocalScale: {x: 1.32, y: 1, z: 2.83}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5684537425410653373}
+  m_Father: {fileID: 8865473705731225605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9087434719265139039
 MeshFilter:
@@ -597,7 +589,7 @@ GameObject:
   - component: {fileID: 1180311909355591088}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Finish
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -610,12 +602,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6875007527284811306}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.97, y: 0.89, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4483178, y: 3.89, z: 12.88}
+  m_LocalScale: {x: 1.32, y: 1, z: 2.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5684537425410653373}
+  m_Father: {fileID: 8865473705731225605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &423743346616583476
 MeshFilter:
@@ -705,7 +697,7 @@ GameObject:
   - component: {fileID: 5920035315142221831}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -719,11 +711,11 @@ Transform:
   m_GameObject: {fileID: 6939887107561733352}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.71, z: -2.1932023}
-  m_LocalScale: {x: 0.75757575, y: 1, z: 0.035778176}
+  m_LocalPosition: {x: -3.7920828, y: 3.4218538, z: -0.041853987}
+  m_LocalScale: {x: 1, y: 1, z: 0.19999997}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5684537425410653373}
+  m_Father: {fileID: 8865473705731225605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2407318899052121073
 MeshFilter:
@@ -808,7 +800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ad98fe2acb147f1a105cdb100d8ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: {fileID: 6939887107561733352}
 --- !u!1 &7145139196586077980
 GameObject:
   m_ObjectHideFlags: 0
@@ -824,7 +815,7 @@ GameObject:
   - component: {fileID: 5805366021388307858}
   m_Layer: 0
   m_Name: Sphere (3)
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -838,11 +829,11 @@ Transform:
   m_GameObject: {fileID: 7145139196586077980}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.71, z: -1.194}
-  m_LocalScale: {x: 0.75757575, y: 1, z: 0.035778176}
+  m_LocalPosition: {x: -3.7920828, y: 3.4218538, z: 5.5436864}
+  m_LocalScale: {x: 1, y: 1, z: 0.19999997}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5684537425410653373}
+  m_Father: {fileID: 8865473705731225605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5251376859267839521
 MeshFilter:
@@ -927,4 +918,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ad98fe2acb147f1a105cdb100d8ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: {fileID: 7145139196586077980}
+--- !u!1 &7613668841694017474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8865473705731225605}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8865473705731225605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7613668841694017474}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.8727899, y: -2.7118537, z: -2.1857152}
+  m_LocalScale: {x: 0.75757575, y: 1, z: 0.17889088}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3847386097477491589}
+  - {fileID: 8852396261953281808}
+  - {fileID: 9006442200676354725}
+  - {fileID: 5192736792520470801}
+  - {fileID: 2917657095950397721}
+  - {fileID: 5778973804223600647}
+  - {fileID: 3201092187588642253}
+  m_Father: {fileID: 5684537425410653373}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
