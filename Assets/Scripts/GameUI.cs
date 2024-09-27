@@ -11,7 +11,7 @@ public class GameUI : MonoBehaviour
     private void OnEnable()
     {
         GameLogic.OnGameRestartHold += TextArrange;
-        GameLogic.OnGameRestarted += TextArrange;
+        GameLogic.Playing += TextArrange;
         GameLogic.OnGameStarted += TextArrange;
         CollisionDetection.CollidedCoin += IncrementCoinCount;
     }

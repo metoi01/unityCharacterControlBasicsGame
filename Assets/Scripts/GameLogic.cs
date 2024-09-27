@@ -5,7 +5,7 @@ public class GameLogic : MonoBehaviour
 {
     public static Action OnGameStarted;
     public static Action OnGameRestartHold;
-    public static Action OnGameRestarted;
+    public static Action Playing;
     
     public static GameState _gameState;
     private void OnEnable()
@@ -29,7 +29,7 @@ public class GameLogic : MonoBehaviour
         else if (_gameState == GameState.RestartingHold)
         {
             _gameState = GameState.Playing;
-            OnGameRestarted?.Invoke();
+            Playing?.Invoke();
         }
     }
 

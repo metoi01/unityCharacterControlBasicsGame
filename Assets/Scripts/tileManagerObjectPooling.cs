@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TileManagerObjectPooling : MonoBehaviour
 {
@@ -19,9 +20,10 @@ public class TileManagerObjectPooling : MonoBehaviour
     private int _counterHelper;
     private int _tilesToSpawn;
     
-    private bool _isGameStarted = true;
-    private bool _didCharacterMove = false;
-
+    private void OnEnable()
+    {
+        GameLogic.Playing += RestartGame;
+    }
     void Start()
     {
         _tilesToSpawn = tiles.Length * 2 + 2;
@@ -30,24 +32,19 @@ public class TileManagerObjectPooling : MonoBehaviour
             SpawnTile(Random.Range(0, tiles.Length));
         }
     }
+    private void OnDisable()
+    {
+        GameLogic.Playing -= RestartGame;
+    }
 
     void Update()
     {
-        if (playerTransform.transform.position.z > 4)
-        {
-            _didCharacterMove = true;
-        }
-        else if (!(playerTransform.transform.position.z > 4) && _didCharacterMove)
-        {
-            RestartGame();
-            _didCharacterMove = false;
-        }
-        if (_isGameStarted)
+        if (GameLogic._gameState == GameLogic.GameState.Playing)
         {
             ReArrangeTiles();
         }
     }
-    public void SpawnTile(int tileIndex)
+    private void SpawnTile(int tileIndex)
     {
         _object = Instantiate(tiles[tileIndex], transform.forward * zSpawn, transform.rotation);
         _activeTiles.Add(_object);
@@ -55,7 +52,7 @@ public class TileManagerObjectPooling : MonoBehaviour
     }
     private void ReArrangeTiles()
     {
-        if (playerTransform.transform.position.z > _activeTiles[_counter].transform.position.z + tileLength)
+        if(playerTransform.transform.position.z > _activeTiles[_counter].transform.position.z + tileLength)
         {
             _activeTiles[_counter].SetActive(false);
             _activeTiles[_counter].transform.position = new Vector3(_activeTiles[_counter].transform.position.x, _activeTiles[_counter].transform.position.y, zSpawn);
@@ -88,7 +85,6 @@ public class TileManagerObjectPooling : MonoBehaviour
             _activeTiles[_counter].SetActive(true);
             _counter++;
         }
-        _isGameStarted = true;
         _counter = 0;
     }
 }

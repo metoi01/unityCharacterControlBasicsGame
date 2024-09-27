@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -20,14 +19,14 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.ArrowClicked += LaneChange;
         GameLogic.OnGameStarted += Playing;
-        GameLogic.OnGameRestarted += Playing;
+        GameLogic.Playing += Playing;
     }
 
     private void OnDisable()
     {
         InputManager.ArrowClicked -= LaneChange;
         GameLogic.OnGameStarted -= Playing;
-        GameLogic.OnGameRestarted -= Playing;
+        GameLogic.Playing -= Playing;
     }
 
     private void LaneChange(int direction)
