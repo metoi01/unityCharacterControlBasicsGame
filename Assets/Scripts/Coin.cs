@@ -17,6 +17,7 @@ public class Coin : MonoBehaviour
     }
     private void Collided()
     {
+        if(this == CollisionDetection.CollidedCoin)
         gameObject.SetActive(false);
     }
 }

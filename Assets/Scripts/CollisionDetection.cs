@@ -4,7 +4,7 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour
 {
     public static Action Collided;
-    public static Action CollidedCoin;
+    public static Action<GameObject> CollidedCoin;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Obstacle")
@@ -13,7 +13,7 @@ public class CollisionDetection : MonoBehaviour
         }
         if (other.gameObject.tag == "Coin")
         {
-            CollidedCoin?.Invoke();
+            CollidedCoin?.Invoke(this);
         }
     }
 }

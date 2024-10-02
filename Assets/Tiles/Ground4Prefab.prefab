@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 8634200316182804041}
   - component: {fileID: 5656203044374223245}
   m_Layer: 0
-  m_Name: Ground (1) 1
+  m_Name: Ground4Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

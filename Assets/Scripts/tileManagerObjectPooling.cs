@@ -4,21 +4,16 @@ using UnityEngine;
 public class TileManagerObjectPooling : MonoBehaviour
 {
     public GameObject[] tiles;
-    public Transform playerTransform;
-    
     public float zSpawn = 0;
     public float tileLength = 49;
-    
+    public Transform playerTransform;
     private List<GameObject> _activeTiles = new List<GameObject>();
-    
     private GameObject _object;
     private GameObject _swap;
-    
     private int _randomNum;
     private int _counter = 0;
     private int _counterHelper;
     private int _tilesToSpawn;
-    
     private bool _isGameStarted = true;
     private bool _didCharacterMove = false;
 
