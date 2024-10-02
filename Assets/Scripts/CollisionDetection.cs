@@ -13,7 +13,7 @@ public class CollisionDetection : MonoBehaviour
         }
         if (other.gameObject.tag == "Coin")
         {
-            CollidedCoin?.Invoke(this);
+            CollidedCoin?.Invoke(other.gameObject);
         }
     }
 }

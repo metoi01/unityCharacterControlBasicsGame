@@ -23,7 +23,7 @@ public class GameUI : MonoBehaviour
         CollisionDetection.CollidedCoin -= IncrementCoinCount;
     }
 
-    private void IncrementCoinCount()
+    private void IncrementCoinCount(GameObject oth)
     {
         _coinCount++;
         coinsText.text = "Coins: " + _coinCount;
