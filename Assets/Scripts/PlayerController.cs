@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private const int MAX_LANES = 2;
     
     public GameObject player;
-    
+
     public float forwardSpeed = 10;
     public float maxSpeed;
     public float sidewaysSpeed = 4;
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     
     private int _currentLaneIndex = 1;
 
+    private float _initialSpeed;
     private float _velocity = 10f;
     private void OnEnable()
     {
@@ -27,6 +29,11 @@ public class PlayerController : MonoBehaviour
         InputManager.ArrowClicked -= LaneChange;
         GameLogic.OnGameStarted -= Playing;
         GameLogic.Playing -= Playing;
+    }
+
+    private void Start()
+    {
+        _initialSpeed = forwardSpeed;
     }
 
     private void LaneChange(int direction)
@@ -75,6 +82,7 @@ public class PlayerController : MonoBehaviour
     private void Playing()
     {
         _currentLaneIndex = 1;
+        forwardSpeed = _initialSpeed;
         player.transform.position = new Vector3(0, 1, 4);
     }
 }
