@@ -5,14 +5,17 @@ using Random = UnityEngine.Random;
 public class TileManagerObjectPooling : MonoBehaviour
 {
     public GameObject[] tiles;
+    public GameObject startGround;
+    
     public Transform playerTransform;
     
     public float zSpawn = 0;
-    public float tileLength = 49;
+    public float tileLength = 19;
     
     private List<GameObject> _activeTiles = new List<GameObject>();
     
     private GameObject _object;
+    private GameObject _startingGround;
     private GameObject _swap;
     
     private int _randomNum;
@@ -26,6 +29,8 @@ public class TileManagerObjectPooling : MonoBehaviour
     }
     void Start()
     {
+        _startingGround = Instantiate(startGround, transform.forward * zSpawn, transform.rotation);
+        zSpawn += tileLength;
         _tilesToSpawn = tiles.Length * 2 + 2;
         for (int i = 0; i < _tilesToSpawn; i++)
         {
@@ -71,7 +76,7 @@ public class TileManagerObjectPooling : MonoBehaviour
     }
     private void RestartGame()
     {
-        zSpawn = 0;
+        zSpawn = 19;
         _counter = 0;
         for (int i = 0; i < _tilesToSpawn; i++)
         {
