@@ -5,6 +5,7 @@ public class GameLogic : MonoBehaviour
 {
     public static Action OnGameStarted;
     public static Action OnGameRestartHold;
+    public static Action PrepareScene;
     public static Action Playing;
     
     public static GameState _gameState;
@@ -28,6 +29,11 @@ public class GameLogic : MonoBehaviour
         }
         else if (_gameState == GameState.RestartingHold)
         {
+            _gameState = GameState.PrepareScene;
+            PrepareScene?.Invoke();
+        }
+        else if (_gameState == GameState.PrepareScene)
+        {
             _gameState = GameState.Playing;
             Playing?.Invoke();
         }
@@ -43,6 +49,7 @@ public class GameLogic : MonoBehaviour
     {
         ReadyToStart,
         Playing,
-        RestartingHold
+        RestartingHold,
+        PrepareScene
     }
 }

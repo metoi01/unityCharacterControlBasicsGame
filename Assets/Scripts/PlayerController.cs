@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         InputManager.ArrowClicked += LaneChange;
         GameLogic.OnGameStarted += Playing;
         GameLogic.Playing += Playing;
+        GameLogic.PrepareScene += PrepareScene;
     }
 
     private void OnDisable()
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
         InputManager.ArrowClicked -= LaneChange;
         GameLogic.OnGameStarted -= Playing;
         GameLogic.Playing -= Playing;
+        GameLogic.PrepareScene -= PrepareScene;
     }
 
     private void Start()
@@ -79,10 +81,14 @@ public class PlayerController : MonoBehaviour
             forwardSpeed += 0.1f * Time.deltaTime;
         }
     }
-    private void Playing()
+
+    private void PrepareScene()
     {
         _currentLaneIndex = 1;
-        forwardSpeed = _initialSpeed;
         player.transform.position = new Vector3(0, 1, 4);
+    }
+    private void Playing()
+    {
+        forwardSpeed = _initialSpeed;
     }
 }

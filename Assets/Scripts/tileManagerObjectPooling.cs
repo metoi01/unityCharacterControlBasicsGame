@@ -25,8 +25,9 @@ public class TileManagerObjectPooling : MonoBehaviour
     
     private void OnEnable()
     {
-        GameLogic.Playing += RestartGame;
+        GameLogic.PrepareScene += RestartGame;
     }
+    
     void Start()
     {
         _startingGround = Instantiate(startGround, transform.forward * zSpawn, transform.rotation);
@@ -39,7 +40,7 @@ public class TileManagerObjectPooling : MonoBehaviour
     }
     private void OnDisable()
     {
-        GameLogic.Playing -= RestartGame;
+        GameLogic.PrepareScene -= RestartGame;
     }
 
     void Update()
