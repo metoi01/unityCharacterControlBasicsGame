@@ -7,7 +7,7 @@ public class Coin : MonoBehaviour
     private void OnEnable()
     {
         CollisionDetection.CollidedCoin += Collided;
-        GameLogic.OnGameStarted += ActivateCoins;
+        GameLogic.PrepareScene += ActivateCoins;
     }
     void Update()
     {
@@ -16,6 +16,7 @@ public class Coin : MonoBehaviour
     private void OnDisable()
     {
         CollisionDetection.CollidedCoin -= Collided;
+        GameLogic.PrepareScene -= ActivateCoins;
     }
     private void Collided(GameObject other)
     {
