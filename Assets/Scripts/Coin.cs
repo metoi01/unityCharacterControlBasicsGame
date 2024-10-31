@@ -3,11 +3,20 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    private List<GameObject> coins = new List<GameObject>();
+    public GameObject ground;
+    private Renderer _coinRenderer;
+    private Collider _coinCollider;
     private void OnEnable()
     {
         CollisionDetection.CollidedCoin += Collided;
-        GameLogic.PrepareScene += ActivateCoins;
+        GameLogic.PrepareScene += ActivateCoin;
+        TileManagerObjectPooling.TileArranged += ActivateCoinGround;
+    }
+
+    void Start()
+    {
+        _coinRenderer = GetComponent<Renderer>();
+        _coinCollider = GetComponent<Collider>();
     }
     void Update()
     {
@@ -16,22 +25,35 @@ public class Coin : MonoBehaviour
     private void OnDisable()
     {
         CollisionDetection.CollidedCoin -= Collided;
-        GameLogic.PrepareScene -= ActivateCoins;
+        GameLogic.PrepareScene -= ActivateCoin;
+        TileManagerObjectPooling.TileArranged -= ActivateCoinGround;
     }
     private void Collided(GameObject other)
     {
         if (gameObject == other)
         {
-            coins.Add(gameObject);
-            gameObject.SetActive(false);
+            HideCoin();
         }
     }
-
-    private void ActivateCoins()
+    
+    private void HideCoin()
     {
-        for (int i = 0; i < coins.Count; i++)
+        _coinRenderer.enabled = false;
+        _coinCollider.enabled = false;
+    }
+
+    private void ActivateCoin()
+    {
+        _coinRenderer.enabled = true;
+        _coinCollider.enabled = true;
+    }
+
+    private void ActivateCoinGround(GameObject groundPassed)
+    {
+        if (ground.name == groundPassed.name)
         {
-            coins[i].SetActive(true);
+            _coinRenderer.enabled = true;
+            _coinCollider.enabled = true;
         }
     }
 }

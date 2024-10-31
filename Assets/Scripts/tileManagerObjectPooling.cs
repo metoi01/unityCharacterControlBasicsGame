@@ -1,9 +1,12 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class TileManagerObjectPooling : MonoBehaviour
 {
+    public static Action<GameObject> TileArranged;
+    
     public GameObject[] tiles;
     public GameObject startGround;
     
@@ -60,8 +63,9 @@ public class TileManagerObjectPooling : MonoBehaviour
     {
         if(playerTransform.transform.position.z > _activeTiles[_counter].transform.position.z + tileLength)
         {
-            _activeTiles[_counter].SetActive(false);
+            _activeTiles[_counter].GetComponent<Renderer>().enabled = false;
             _activeTiles[_counter].transform.position = new Vector3(_activeTiles[_counter].transform.position.x, _activeTiles[_counter].transform.position.y, zSpawn);
+            TileArranged?.Invoke(_activeTiles[_counter]);
             _counterHelper = _counter;
             zSpawn += tileLength;
             if (_counter < tiles.Length * 2 + 1)
@@ -72,7 +76,7 @@ public class TileManagerObjectPooling : MonoBehaviour
             {
                 _counter = 0;
             }
-            _activeTiles[_counterHelper].SetActive(true);
+            _activeTiles[_counterHelper].GetComponent<Renderer>().enabled = true;
         }
     }
     private void RestartGame()
