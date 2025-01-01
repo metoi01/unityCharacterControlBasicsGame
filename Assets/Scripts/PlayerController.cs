@@ -40,16 +40,20 @@ public class PlayerController : MonoBehaviour
 
     private void LaneChange(int direction)
     {
-        if (direction == -1)
+        if (GameLogic._gameState == GameLogic.GameState.Playing)
         {
-            _currentLaneIndex--;
-        }
+            if (direction == -1)
+            {
+                _currentLaneIndex--;
+            }
 
-        if (direction == 1)
-        {
-            _currentLaneIndex++;
+            if (direction == 1)
+            {
+                _currentLaneIndex++;
+            }
+
+            _currentLaneIndex = Mathf.Clamp(_currentLaneIndex, 0, MAX_LANES);
         }
-        _currentLaneIndex = Mathf.Clamp(_currentLaneIndex, 0, MAX_LANES);
     }
 
     void Update()
