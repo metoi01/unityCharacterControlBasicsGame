@@ -26,12 +26,14 @@ public class AnimationManager : MonoBehaviour
         GameLogic.PrepareScene += PrepareScene;
         GameLogic.Playing += Playing;
         GameLogic.OnGameRestartHold += RestartingHold;
+        GameLogic.OnGameStarted += Playing;
     }
     private void OnDisable()
     {
         GameLogic.PrepareScene -= PrepareScene;
         GameLogic.Playing -= Playing;
         GameLogic.OnGameRestartHold -= RestartingHold;
+        GameLogic.OnGameStarted -= Playing;
     }
 
     void RestartingHold()

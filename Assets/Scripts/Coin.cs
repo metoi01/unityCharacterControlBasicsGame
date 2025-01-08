@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
@@ -50,10 +50,17 @@ public class Coin : MonoBehaviour
 
     private void ActivateCoinGround(GameObject groundPassed)
     {
+        StartCoroutine(ActivateCoinGroundWithDelay(groundPassed));
+    }
+    
+    private IEnumerator ActivateCoinGroundWithDelay(GameObject groundPassed)
+    {
+        yield return new WaitForSeconds(3);
+
         if (ground.name == groundPassed.name)
         {
             _coinRenderer.enabled = true;
-            _coinCollider.enabled = true;
+            _coinCollider.enabled = true; 
         }
     }
 }
