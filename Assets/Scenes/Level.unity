@@ -304,9 +304,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 3731467069688138825, guid: 1562d27f0a0c040039b03d63c7f9b47a, type: 3}
-  - {fileID: 6490986576766003910, guid: d1ed7f5f35ad7400bbc4d4187b2d8e98, type: 3}
-  - {fileID: 7388152339453576221, guid: 92d01e55f720741a88ba71279d9e9ca1, type: 3}
+  - {fileID: 3161825686431758442, guid: 77c871072fabde648807a22afbafc630, type: 3}
   - {fileID: 4037425905954798666, guid: 0ac97348fa8e74625a3c7d66bac6b7e6, type: 3}
+  - {fileID: 7992083068746331749, guid: 03a06347458c08243843107175e37fb5, type: 3}
+  - {fileID: 6892604728194942308, guid: f265e5ac657cb8947a9c6f963d6e6587, type: 3}
+  - {fileID: 1079566169136628303, guid: d384c17f6ef757b488854799bdb5ad13, type: 3}
+  - {fileID: 2370124203507959424, guid: 55ca78a2dc20ee74aa3c756da8eb6e17, type: 3}
+  - {fileID: 4647484089895613950, guid: 5345c4d53ca601342bd753c05b535292, type: 3}
   startGround: {fileID: 4902433918569532764, guid: 98fe847934377424ca7c6a3091022516, type: 3}
   playerTransform: {fileID: 1618090200}
   zSpawn: 0

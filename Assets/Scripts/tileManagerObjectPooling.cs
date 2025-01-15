@@ -35,10 +35,19 @@ public class TileManagerObjectPooling : MonoBehaviour
     {
         _startingGround = Instantiate(startGround, transform.forward * zSpawn, transform.rotation);
         zSpawn += tileLength;
-        _tilesToSpawn = tiles.Length * 2 + 2;
+        _tilesToSpawn = tiles.Length;
+        
+        List<int> tileIndices = new List<int>(tiles.Length);
+        for (int i = 0; i < tiles.Length; i++)
+        {
+            tileIndices.Add(i);
+        }
+        tileIndices.Sort((a, b) => Random.Range(-1, 2));
+
+        
         for (int i = 0; i < _tilesToSpawn; i++)
         {
-            SpawnTile(Random.Range(0, tiles.Length));
+            SpawnTile(tileIndices[i]);
         }
     }
     private void OnDisable()
@@ -68,7 +77,7 @@ public class TileManagerObjectPooling : MonoBehaviour
             TileArranged?.Invoke(_activeTiles[_counter]);
             _counterHelper = _counter;
             zSpawn += tileLength;
-            if (_counter < tiles.Length * 2 + 1)
+            if (_counter < _activeTiles.Count - 1)
             {
                 _counter++;
             }
