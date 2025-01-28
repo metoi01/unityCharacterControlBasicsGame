@@ -4,9 +4,12 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     public GameObject startingText;
+    public GameObject gameOverPanel;
+    
     public Text coinsText;
+    public Text coinsCollected;
 
-    private int _coinCount;
+    private int _coinCount = 0;
 
     private void OnEnable()
     {
@@ -33,14 +36,18 @@ public class GameUI : MonoBehaviour
     {
         if (GameLogic._gameState == GameLogic.GameState.RestartingHold)
         {
-            startingText.SetActive(true);
+            gameOverPanel.SetActive(true);
+            coinsText.enabled = false;
+            coinsCollected.text = "Coins Collected: " + _coinCount;
             _coinCount = 0;
             coinsText.text = "Coins: " + _coinCount;
             
         }
         if (GameLogic._gameState == GameLogic.GameState.Playing)
         {
+            gameOverPanel.SetActive(false);
             startingText.SetActive(false);
+            coinsText.enabled = true;
         }
     }
 }

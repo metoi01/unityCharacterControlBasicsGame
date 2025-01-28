@@ -13,17 +13,9 @@ public class AnimationManager : MonoBehaviour
         mAnimator.SetTrigger("trigIdle");
     }
 
-    private void Update()
-    {
-        if (GameLogic._gameState == GameLogic.GameState.Playing)
-        {
-            //mAnimator.SetTrigger("trigPlaying");
-        }
-    }
-
     private void OnEnable()
     {
-        GameLogic.PrepareScene += PrepareScene;
+        GameLogic.OnGameReset += PrepareScene;
         GameLogic.Playing += Playing;
         GameLogic.OnGameRestartHold += RestartingHold;
         GameLogic.OnGameStarted += Playing;
@@ -31,7 +23,7 @@ public class AnimationManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        GameLogic.PrepareScene -= PrepareScene;
+        GameLogic.OnGameReset -= PrepareScene;
         GameLogic.Playing -= Playing;
         GameLogic.OnGameRestartHold -= RestartingHold;
         GameLogic.OnGameStarted -= Playing;
@@ -44,10 +36,20 @@ public class AnimationManager : MonoBehaviour
     }
     void Playing()
     {
+        // Reset any other triggers first to ensure clean transition
+        mAnimator.ResetTrigger("trigStop");
+        mAnimator.ResetTrigger("trigIdle");
+        mAnimator.ResetTrigger("trigVictory");
+        
         mAnimator.SetTrigger("trigPlaying");
     }
     void PrepareScene()
     {
+        // Reset any other triggers first
+        mAnimator.ResetTrigger("trigStop");
+        mAnimator.ResetTrigger("trigPlaying");
+        mAnimator.ResetTrigger("trigVictory");
+        
         mAnimator.SetTrigger("trigIdle");
     }
 
@@ -60,13 +62,12 @@ public class AnimationManager : MonoBehaviour
     {
         mAnimator.SetTrigger("trigVictory");
         
-        // Wait for the victory animation to complete
-        // Adjust this time to match your victory animation length
         yield return new WaitForSeconds(1f); 
         
-        // Return to running animation if game is still in playing state
         if (GameLogic._gameState == GameLogic.GameState.Playing)
         {
+            // Reset victory trigger before setting playing
+            mAnimator.ResetTrigger("trigVictory");
             mAnimator.SetTrigger("trigPlaying");
         }
     }

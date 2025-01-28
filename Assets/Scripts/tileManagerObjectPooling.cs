@@ -28,7 +28,7 @@ public class TileManagerObjectPooling : MonoBehaviour
     
     private void OnEnable()
     {
-        GameLogic.PrepareScene += RestartGame;
+        GameLogic.OnGameReset += RestartGame;
     }
     
     void Start()
@@ -52,7 +52,7 @@ public class TileManagerObjectPooling : MonoBehaviour
     }
     private void OnDisable()
     {
-        GameLogic.PrepareScene -= RestartGame;
+        GameLogic.OnGameReset -= RestartGame;
     }
 
     void Update()

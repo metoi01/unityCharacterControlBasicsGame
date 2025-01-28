@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         InputManager.OnJumpTriggered += Jump;
         GameLogic.OnGameStarted += Playing;
         GameLogic.Playing += Playing;
-        GameLogic.PrepareScene += PrepareScene;
+        GameLogic.OnGameReset += PrepareScene;
     }
 
     private void OnDisable()
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         InputManager.OnJumpTriggered -= Jump;
         GameLogic.OnGameStarted -= Playing;
         GameLogic.Playing -= Playing;
-        GameLogic.PrepareScene -= PrepareScene;
+        GameLogic.OnGameReset -= PrepareScene;
     }
 
     private void Start()

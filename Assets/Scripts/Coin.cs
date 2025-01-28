@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
     private void OnEnable()
     {
         CollisionDetection.CollidedCoin += Collided;
-        GameLogic.PrepareScene += ActivateCoin;
+        GameLogic.OnGameReset += ActivateCoin;
         TileManagerObjectPooling.TileArranged += ActivateCoinGround;
     }
 
@@ -25,7 +25,7 @@ public class Coin : MonoBehaviour
     private void OnDisable()
     {
         CollisionDetection.CollidedCoin -= Collided;
-        GameLogic.PrepareScene -= ActivateCoin;
+        GameLogic.OnGameReset -= ActivateCoin;
         TileManagerObjectPooling.TileArranged -= ActivateCoinGround;
     }
     private void Collided(GameObject other)
