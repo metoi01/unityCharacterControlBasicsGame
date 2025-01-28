@@ -27,6 +27,7 @@ public class AnimationManager : MonoBehaviour
         GameLogic.Playing += Playing;
         GameLogic.OnGameRestartHold += RestartingHold;
         GameLogic.OnGameStarted += Playing;
+        CollisionDetection.PowerUpCollected += PowerUpCollected;
     }
     private void OnDisable()
     {
@@ -34,6 +35,7 @@ public class AnimationManager : MonoBehaviour
         GameLogic.Playing -= Playing;
         GameLogic.OnGameRestartHold -= RestartingHold;
         GameLogic.OnGameStarted -= Playing;
+        CollisionDetection.PowerUpCollected -= PowerUpCollected;
     }
 
     void RestartingHold()
@@ -47,5 +49,25 @@ public class AnimationManager : MonoBehaviour
     void PrepareScene()
     {
         mAnimator.SetTrigger("trigIdle");
+    }
+
+    void PowerUpCollected()
+    {
+        StartCoroutine(PlayPowerUpAnimation());
+    }
+
+    IEnumerator PlayPowerUpAnimation()
+    {
+        mAnimator.SetTrigger("trigVictory");
+        
+        // Wait for the victory animation to complete
+        // Adjust this time to match your victory animation length
+        yield return new WaitForSeconds(1f); 
+        
+        // Return to running animation if game is still in playing state
+        if (GameLogic._gameState == GameLogic.GameState.Playing)
+        {
+            mAnimator.SetTrigger("trigPlaying");
+        }
     }
 }

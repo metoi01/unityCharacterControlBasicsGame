@@ -8,6 +8,7 @@ public class CollisionDetection : MonoBehaviour
     public static Action<GameObject> CollidedInvinciblePowerUp;
     public static Action<GameObject> CollidedCoinPowerUp;
     public static Action<GameObject> CollidedJumpPowerUp;
+    public static Action PowerUpCollected;
     public static Func<bool> CheckInvincible;
 
     private void OnTriggerEnter(Collider other)
@@ -28,16 +29,19 @@ public class CollisionDetection : MonoBehaviour
         else if (other.gameObject.CompareTag("InvinciblePowerUp"))
         {
             CollidedInvinciblePowerUp?.Invoke(other.gameObject);
+            PowerUpCollected?.Invoke();
             FindObjectOfType<AudioManager>().PlaySound("PowerUp");
         }
         else if (other.gameObject.CompareTag("CoinPowerUp"))
         {
             CollidedCoinPowerUp?.Invoke(other.gameObject);
+            PowerUpCollected?.Invoke();
             FindObjectOfType<AudioManager>().PlaySound("PowerUp");
         }
         else if (other.gameObject.CompareTag("JumpPowerUp"))
         {
             CollidedJumpPowerUp?.Invoke(other.gameObject);
+            PowerUpCollected?.Invoke();
             FindObjectOfType<AudioManager>().PlaySound("PowerUp");
         }
     }
