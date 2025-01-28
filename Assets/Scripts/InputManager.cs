@@ -5,6 +5,7 @@ public class InputManager : MonoBehaviour
 {
     public static Action OnMouseClicked;
     public static Action<int> ArrowClicked;
+    public static Action OnJumpTriggered;
 
     private int _arrow;
     void Update()
@@ -22,6 +23,10 @@ public class InputManager : MonoBehaviour
         {
             _arrow = 1;
             ArrowClicked?.Invoke(_arrow);
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            OnJumpTriggered?.Invoke();
         }
     }
 }

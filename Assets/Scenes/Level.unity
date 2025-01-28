@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 463669233}
   - component: {fileID: 463669232}
   - component: {fileID: 463669236}
+  - component: {fileID: 463669237}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -315,6 +316,18 @@ MonoBehaviour:
   playerTransform: {fileID: 1618090200}
   zSpawn: 0
   tileLength: 19
+--- !u!114 &463669237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463669231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38e1fb20f29ebf4db887e36be2abd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &728133619
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +339,7 @@ GameObject:
   - component: {fileID: 728133622}
   - component: {fileID: 728133621}
   - component: {fileID: 728133623}
+  - component: {fileID: 728133624}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -412,6 +426,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1618090200}
+--- !u!81 &728133624
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728133619}
+  m_Enabled: 1
 --- !u!1 &773977169
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 884540674}
+  - component: {fileID: 884540675}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -546,6 +569,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &884540675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884540673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b00b975bc9aee4b8ad87e73a8787ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: MainTheme
+    clip: {fileID: 8300000, guid: 3d72e21a9b5bda545b3349527ff1800a, type: 3}
+    volume: 0.3
+    loop: 1
+    source: {fileID: 0}
+  - name: PickUpCoin
+    clip: {fileID: 8300000, guid: db5c8c29d67332e4f8f531fa26c59d21, type: 3}
+    volume: 0.4
+    loop: 0
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 75d942c79b5e9c74ca02e7ca581aecbd, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PowerUp
+    clip: {fileID: 8300000, guid: 15479fd55bbdf2840ae1369abafafa2b, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1001 &1122782491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -987,6 +1043,7 @@ MonoBehaviour:
   maxSpeed: 500
   sidewaysSpeed: 4
   laneDistance: 4
+  _verticalVelocity: 0
 --- !u!114 &1618090204
 MonoBehaviour:
   m_ObjectHideFlags: 0

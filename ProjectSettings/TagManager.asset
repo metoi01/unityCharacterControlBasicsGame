@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Obstacle
   - Coin
+  - Ground
+  - CoinPowerUp
+  - JumpPowerUp
+  - InvinciblePowerUp
   layers:
   - Default
   - TransparentFX
