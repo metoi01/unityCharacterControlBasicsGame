@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour
             _characterController = player.AddComponent<CharacterController>();
         }
         
-        // Set proper CharacterController settings
         _characterController.radius = 0.5f;
         _characterController.height = 2f;
         _characterController.center = new Vector3(0, 1f, 0);
@@ -92,20 +91,17 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 moveVector = Vector3.zero;
             
-            // Forward movement
             moveVector += Vector3.forward * (forwardSpeed * Time.deltaTime);
             
-            // Sideways movement - biraz daha hızlı ama hala smooth
             float targetposition = _currentLaneIndex * laneDistance + MIN_X_POSITION;
             float xPosition = Mathf.SmoothDamp(
                 player.transform.position.x, 
                 targetposition, 
                 ref _velocity, 
-                0.15f  // 0.3f'den 0.15f'e düşürüldü - daha hızlı ama hala smooth geçiş
+                0.15f 
             );
             moveVector.x = xPosition - player.transform.position.x;
             
-            // Vertical movement (gravity/jump)
             if (!_characterController.isGrounded)
             {
                 _verticalVelocity += Physics.gravity.y * Time.deltaTime;
@@ -118,14 +114,12 @@ public class PlayerController : MonoBehaviour
             
             moveVector.y = _verticalVelocity * Time.deltaTime;
             
-            // Prevent falling below y=1
-            const float MIN_HEIGHT = 1f; // Minimum yükseklik 1 olarak değiştirildi
+            const float MIN_HEIGHT = 1f; 
             if (player.transform.position.y + moveVector.y <= MIN_HEIGHT)
             {
                 moveVector.y = MIN_HEIGHT - player.transform.position.y;
                 _verticalVelocity = 0;
                 _isJumping = false;
-                // Karakteri tam olarak MIN_HEIGHT seviyesine yerleştir
                 player.transform.position = new Vector3(
                     player.transform.position.x,
                     MIN_HEIGHT,
@@ -133,7 +127,6 @@ public class PlayerController : MonoBehaviour
                 );
             }
             
-            // Apply all movement at once
             _characterController.Move(moveVector);
             
             IncreaseSpeed();
@@ -153,7 +146,6 @@ public class PlayerController : MonoBehaviour
         _currentLaneIndex = 1;
         _verticalVelocity = 0;
         _isJumping = false;
-        // Use CharacterController to set position
         _characterController.enabled = false;
         player.transform.position = new Vector3(0, 1, 4);
         _characterController.enabled = true;

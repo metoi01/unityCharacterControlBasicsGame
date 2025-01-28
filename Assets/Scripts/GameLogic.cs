@@ -9,15 +9,26 @@ public class GameLogic : MonoBehaviour
     public static Action Playing;
     
     public static GameState _gameState;
+
+    private void Start()
+    {
+        _gameState = GameState.ReadyToStart; 
+    }
+
     private void OnEnable()
     {
         InputManager.OnMouseClicked += GameLogicArranger;
         CollisionDetection.Collided += Collided;
+        OnGameReset += HandleGameReset;
+        Playing += HandlePlaying;
     }
+
     private void OnDisable()
     {
         InputManager.OnMouseClicked -= GameLogicArranger;
         CollisionDetection.Collided -= Collided;
+        OnGameReset -= HandleGameReset;
+        Playing -= HandlePlaying;
     }
     
     private void GameLogicArranger()
@@ -26,6 +37,7 @@ public class GameLogic : MonoBehaviour
         {
             _gameState = GameState.Playing;
             OnGameStarted?.Invoke();
+            Playing?.Invoke();
         }
     }
 
@@ -33,6 +45,15 @@ public class GameLogic : MonoBehaviour
     {
         _gameState = GameState.RestartingHold;
         OnGameRestartHold?.Invoke();
+    }
+    private void HandleGameReset()
+    {
+        _gameState = GameState.ReadyToStart;
+    }
+
+    private void HandlePlaying()
+    {
+        _gameState = GameState.Playing;
     }
     
     public enum GameState

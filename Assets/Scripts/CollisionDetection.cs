@@ -17,6 +17,7 @@ public class CollisionDetection : MonoBehaviour
         {
             if (CheckInvincible == null || !CheckInvincible.Invoke())
             {
+                GameLogic._gameState = GameLogic.GameState.RestartingHold;
                 Collided?.Invoke();
                 FindObjectOfType<AudioManager>().PlaySound("GameOver");
             }

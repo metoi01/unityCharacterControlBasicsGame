@@ -700,6 +700,7 @@ GameObject:
   - component: {fileID: 375520763236978879}
   - component: {fileID: 4966149638616301416}
   - component: {fileID: 7123098801726530450}
+  - component: {fileID: 9158305149851041654}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: JumpPowerUp
@@ -793,6 +794,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9158305149851041654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6670214947265282325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9218e134a3d3c6b429067e07e50a01d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ground: {fileID: 7992083068746331749}
 --- !u!1 &7278398308786970751
 GameObject:
   m_ObjectHideFlags: 0

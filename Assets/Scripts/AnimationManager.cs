@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-    private Animator mAnimator;
+    private Animator _mAnimator;
 
     void Start()
     {
-        mAnimator = GetComponent<Animator>();
-        mAnimator.SetTrigger("trigIdle");
+        _mAnimator = GetComponent<Animator>();
+        _mAnimator.SetTrigger("trigIdle");
     }
 
     private void OnEnable()
@@ -32,25 +32,23 @@ public class AnimationManager : MonoBehaviour
 
     void RestartingHold()
     {
-        mAnimator.SetTrigger("trigStop");
+        _mAnimator.SetTrigger("trigStop");
     }
     void Playing()
     {
-        // Reset any other triggers first to ensure clean transition
-        mAnimator.ResetTrigger("trigStop");
-        mAnimator.ResetTrigger("trigIdle");
-        mAnimator.ResetTrigger("trigVictory");
+        _mAnimator.ResetTrigger("trigStop");
+        _mAnimator.ResetTrigger("trigIdle");
+        _mAnimator.ResetTrigger("trigVictory");
         
-        mAnimator.SetTrigger("trigPlaying");
+        _mAnimator.SetTrigger("trigPlaying");
     }
     void PrepareScene()
     {
-        // Reset any other triggers first
-        mAnimator.ResetTrigger("trigStop");
-        mAnimator.ResetTrigger("trigPlaying");
-        mAnimator.ResetTrigger("trigVictory");
+        _mAnimator.ResetTrigger("trigStop");
+        _mAnimator.ResetTrigger("trigPlaying");
+        _mAnimator.ResetTrigger("trigVictory");
         
-        mAnimator.SetTrigger("trigIdle");
+        _mAnimator.SetTrigger("trigIdle");
     }
 
     void PowerUpCollected()
@@ -60,15 +58,14 @@ public class AnimationManager : MonoBehaviour
 
     IEnumerator PlayPowerUpAnimation()
     {
-        mAnimator.SetTrigger("trigVictory");
+        _mAnimator.SetTrigger("trigVictory");
         
         yield return new WaitForSeconds(1f); 
         
         if (GameLogic._gameState == GameLogic.GameState.Playing)
         {
-            // Reset victory trigger before setting playing
-            mAnimator.ResetTrigger("trigVictory");
-            mAnimator.SetTrigger("trigPlaying");
+            _mAnimator.ResetTrigger("trigVictory");
+            _mAnimator.SetTrigger("trigPlaying");
         }
     }
 }

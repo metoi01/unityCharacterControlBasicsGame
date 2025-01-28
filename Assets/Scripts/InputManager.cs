@@ -8,7 +8,24 @@ public class InputManager : MonoBehaviour
     public static Action OnJumpTriggered;
 
     private int _arrow;
+
     void Update()
+    {
+        if (GameLogic._gameState == GameLogic.GameState.Playing)
+        {
+            HandleGameplayInputs();
+        }
+        else if (GameLogic._gameState == GameLogic.GameState.ReadyToStart || 
+                GameLogic._gameState == GameLogic.GameState.RestartingHold)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                OnMouseClicked?.Invoke();
+            }
+        }
+    }
+
+    private void HandleGameplayInputs()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -16,7 +33,7 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            _arrow = -1; 
+            _arrow = -1;
             ArrowClicked?.Invoke(_arrow);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
