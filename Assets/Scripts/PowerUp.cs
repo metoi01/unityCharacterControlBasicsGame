@@ -8,14 +8,12 @@ public class PowerUp : MonoBehaviour
     private Collider _powerUpCollider;
 
     public PowerUpType powerUpType;
-    public float duration = 3f; // Ensure this is set to 3f for invincible power-up
-
+    public float duration = 3f; 
     private void OnEnable()
     {
         GameLogic.OnGameReset += ActivatePowerUp;
         TileManagerObjectPooling.TileArranged += ActivatePowerUpGround;
         
-        // Her powerup tipi için sadece kendi event'ine abone ol
         switch (powerUpType)
         {
             case PowerUpType.Invincible:
@@ -41,7 +39,6 @@ public class PowerUp : MonoBehaviour
         GameLogic.OnGameReset -= ActivatePowerUp;
         TileManagerObjectPooling.TileArranged -= ActivatePowerUpGround;
         
-        // Her powerup tipi için sadece kendi event'inden çık
         switch (powerUpType)
         {
             case PowerUpType.Invincible:
@@ -94,7 +91,6 @@ public class PowerUp : MonoBehaviour
 
     private IEnumerator ActivatePowerUpEffect()
     {
-        // PowerUp efektini başlat
         switch (powerUpType)
         {
             case PowerUpType.Invincible:
@@ -112,8 +108,7 @@ public class PowerUp : MonoBehaviour
         }
 
         yield return new WaitForSeconds(duration);
-
-        // PowerUp efektini bitir
+        
         switch (powerUpType)
         {
             case PowerUpType.Invincible:

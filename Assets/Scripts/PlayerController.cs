@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     
     private int _currentLaneIndex = 1;
 
-    private float _initialSpeed;
+    public float _initialSpeed;
     private float _velocity = 0f;
     public float _verticalVelocity;
     private bool _isJumping;

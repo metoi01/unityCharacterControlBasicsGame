@@ -11,15 +11,23 @@ public class GameUI : MonoBehaviour
     public Text invinciblePowerUp;
     public Text coinsDoubledPowerUp;
     public Text tripleJumpPowerUp;
+    public Text scoreText;
     public Text coinsCollected;
+    public Text scoreCollected;
 
     private int _coinCount = 0;
+    private float _score = 0f;
+    private PlayerController _playerController;
 
     private Coroutine _invincibleTimerCoroutine;
     private Coroutine _coinsDoubledTimerCoroutine;
     private Coroutine _tripleJumpTimerCoroutine;
 
     private PowerUpsManager _powerUpsManager;
+
+    private bool _shouldResetValues = false;
+    private int _lastCoinCount = 0;
+    private float _lastScore = 0f;
 
     private void OnEnable()
     {
@@ -36,6 +44,8 @@ public class GameUI : MonoBehaviour
         
         PowerUpsManager.PowerUpEvents.OnTripleJumpPowerUpCollected += StartTripleJumpTimer;
         PowerUpsManager.PowerUpEvents.OnTripleJumpPowerUpEnded += HideTripleJumpText;
+
+        GameLogic.OnGameReset += ResetUI;
     }
 
     private void OnDisable()
@@ -53,11 +63,12 @@ public class GameUI : MonoBehaviour
         
         PowerUpsManager.PowerUpEvents.OnTripleJumpPowerUpCollected -= StartTripleJumpTimer;
         PowerUpsManager.PowerUpEvents.OnTripleJumpPowerUpEnded -= HideTripleJumpText;
+
+        GameLogic.OnGameReset -= ResetUI;
     }
 
     private void IncrementCoinCount(GameObject oth)
     {
-        // Coin doubled powerup aktifse 2 coin ekle
         int coinIncrement = _powerUpsManager.IsCoinDoubled() ? 2 : 1;
         _coinCount += coinIncrement;
         coinsText.text = "Coins: " + _coinCount;
@@ -69,17 +80,39 @@ public class GameUI : MonoBehaviour
         {
             gameOverPanel.SetActive(true);
             coinsText.enabled = false;
-            coinsCollected.text = "Coins Collected: " + _coinCount;
-            _coinCount = 0;
-            coinsText.text = "Coins: " + _coinCount;
+            scoreText.enabled = false;
+            
+            _lastCoinCount = _coinCount;
+            _lastScore = _score;
+            
+            coinsCollected.text = "Coins Collected: " + _lastCoinCount;
+            scoreCollected.text = "Final Score: " + Mathf.FloorToInt(_lastScore);
+            
+            _shouldResetValues = true;
             
             HideAllPowerUpTexts();
         }
-        if (GameLogic._gameState == GameLogic.GameState.Playing)
+        else if (GameLogic._gameState == GameLogic.GameState.Playing)
         {
+            if (_shouldResetValues)
+            {
+                _coinCount = 0;
+                _lastCoinCount = 0;
+                _score = 0;
+                _lastScore = 0;
+                coinsText.text = "Coins: " + _coinCount;
+                UpdateScoreText();
+                
+                coinsCollected.text = "Coins Collected: 0";
+                scoreCollected.text = "Final Score: 0";
+                
+                _shouldResetValues = false;
+            }
+            
             gameOverPanel.SetActive(false);
             startingText.SetActive(false);
             coinsText.enabled = true;
+            scoreText.enabled = true;
         }
     }
 
@@ -87,6 +120,23 @@ public class GameUI : MonoBehaviour
     {
         HideAllPowerUpTexts();
         _powerUpsManager = FindObjectOfType<PowerUpsManager>();
+        _playerController = FindObjectOfType<PlayerController>();
+        UpdateScoreText();
+    }
+
+    private void Update()
+    {
+        if (GameLogic._gameState == GameLogic.GameState.Playing)
+        {
+            float speedMultiplier = _playerController.forwardSpeed / _playerController._initialSpeed;
+            _score += Time.deltaTime * 10 * speedMultiplier;
+            UpdateScoreText();
+        }
+    }
+
+    private void UpdateScoreText()
+    {
+        scoreText.text = "Score: " + Mathf.FloorToInt(_score);
     }
 
     private void HideAllPowerUpTexts()
@@ -136,4 +186,15 @@ public class GameUI : MonoBehaviour
     private void HideInvincibleText() => invinciblePowerUp.gameObject.SetActive(false);
     private void HideCoinsDoubledText() => coinsDoubledPowerUp.gameObject.SetActive(false);
     private void HideTripleJumpText() => tripleJumpPowerUp.gameObject.SetActive(false);
+
+    private void ResetUI()
+    {
+        _shouldResetValues = false;
+        _coinCount = 0;
+        _score = 0f;
+        coinsText.text = "Coins: " + _coinCount;
+        scoreText.text = "Score: " + Mathf.FloorToInt(_score);
+        coinsCollected.text = "Coins Collected: " + _lastCoinCount;
+        scoreCollected.text = "Final Score: " + Mathf.FloorToInt(_lastScore);
+    }
 }

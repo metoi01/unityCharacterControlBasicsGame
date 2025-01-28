@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PowerUpsManager : MonoBehaviour
 {
-    // PowerUpEvents'i buraya taşıyoruz
     public static class PowerUpEvents
     {
         public static Action<float> OnInvinciblePowerUpCollected;
@@ -75,8 +74,6 @@ public class PowerUpsManager : MonoBehaviour
         }
         
         float duration = 3f;
-        
-        Debug.Log($"Invincible PowerUp Duration: {duration}");
         
         _isInvincible = true;
         PowerUpEvents.OnInvinciblePowerUpCollected?.Invoke(duration);
